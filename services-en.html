@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="خدمات كور ميديا - إدارة الفعاليات، الإنتاج الإعلامي، التكنولوجيا والذكاء الاصطناعي، الهوية البصرية">
-    <title>خدماتنا - كور ميديا</title>
+    <meta name="description" content="Core Media Services - Event Management, Media Production, Technology & AI, Brand Identity">
+    <title>Our Services - Core Media</title>
     <link rel="icon" type="image/png" href="/assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -28,7 +28,7 @@
         }
 
         body {
-            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #1a1a1a;
             line-height: 1.6;
             background: white;
@@ -99,7 +99,7 @@
             content: '';
             position: absolute;
             bottom: -5px;
-            right: 0;
+            left: 0;
             width: 0;
             height: 2px;
             background: var(--primary-red);
@@ -151,7 +151,7 @@
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
-            left: 30px;
+            right: 30px;
             width: 60px;
             height: 60px;
             background: #25D366;
@@ -202,7 +202,7 @@
             content: '';
             position: absolute;
             top: -50%;
-            left: -10%;
+            right: -10%;
             width: 800px;
             height: 800px;
             background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
@@ -273,11 +273,11 @@
         }
 
         .service-block:nth-child(even) {
-            direction: ltr;
+            direction: rtl;
         }
 
         .service-block:nth-child(even) > * {
-            direction: rtl;
+            direction: ltr;
         }
 
         .service-content {
@@ -325,7 +325,7 @@
 
         .service-features li {
             padding: 12px 0;
-            padding-right: 32px;
+            padding-left: 32px;
             position: relative;
             font-size: 15px;
             color: var(--text-gray);
@@ -334,7 +334,7 @@
         .service-features li::before {
             content: '✓';
             position: absolute;
-            right: 0;
+            left: 0;
             color: var(--primary-red);
             font-weight: 900;
             font-size: 18px;
@@ -563,7 +563,7 @@
             }
 
             .service-block:nth-child(even) {
-                direction: rtl;
+                direction: ltr;
             }
 
             .footer-grid {
@@ -595,7 +595,7 @@
 
             .whatsapp-float {
                 bottom: 20px;
-                left: 20px;
+                right: 20px;
                 width: 50px;
                 height: 50px;
             }
@@ -608,7 +608,7 @@
 </head>
 <body>
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/966537556021" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <a href="https://wa.me/966537556021" class="whatsapp-float" target="_blank" aria-label="Contact us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -616,17 +616,17 @@
     <nav>
         <div class="nav-container">
             <div class="logo">
-                <img src="/assets/images/logo.png" alt="كور ميديا">
+                <img src="/assets/images/logo.png" alt="Core Media">
             </div>
             <ul class="nav-menu">
-                <li><a href="index-ar.html">الرئيسية</a></li>
-                <li><a href="about-ar.html">من نحن</a></li>
-                <li><a href="services-ar.html" class="active">الخدمات</a></li>
-                <li><a href="contact-ar.html">تواصل معنا</a></li>
+                <li><a href="index-en.html">Home</a></li>
+                <li><a href="about-en.html">About</a></li>
+                <li><a href="services-en.html" class="active">Services</a></li>
+                <li><a href="contact-en.html">Contact</a></li>
             </ul>
             <div class="language-switcher">
-                <a href="services-ar.html" class="lang-btn active">عربي</a>
-                <a href="services-en.html" class="lang-btn">English</a>
+                <a href="services-ar.html" class="lang-btn">عربي</a>
+                <a href="services-en.html" class="lang-btn active">English</a>
             </div>
         </div>
     </nav>
@@ -636,11 +636,11 @@
         <div class="services-hero-container">
             <div class="services-tag">
                 <i class="fas fa-briefcase"></i>
-                ما نقدمه
+                What We Do
             </div>
-            <h1 class="services-hero-title">حلول شاملة</h1>
+            <h1 class="services-hero-title">Comprehensive Solutions</h1>
             <p class="services-hero-subtitle">
-                نقدم منظومة خدمات متكاملة تربط بين الاستراتيجية والتنفيذ والتواصل لتحقيق نتائج استثنائية.
+                We offer an integrated system of services that connects strategy, execution, and communication to deliver exceptional results.
             </p>
         </div>
     </section>
@@ -654,24 +654,24 @@
                     <div class="service-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <h2 class="service-title">الفعاليات والتجارب</h2>
+                    <h2 class="service-title">Events & Experience</h2>
                     <p class="service-description">
-                        نمتلك خبرة عملية في تنفيذ الفعاليات الكبرى ضمن منصات محلية ودولية وتحويلها إلى تجارب متكاملة تعكس الهوية وتحقق حضوراً مؤثراً.
+                        We bring hands-on expertise in delivering large-scale events across local and international platforms, transforming ideas into memorable, high-impact gatherings that reflect brand identity and create lasting presence.
                     </p>
                     <ul class="service-features">
-                        <li>التخطيط والتنفيذ للفعاليات الكبرى</li>
-                        <li>إدارة الأجنحة الدولية</li>
-                        <li>تصميم تجارب العلامة التجارية</li>
-                        <li>التنسيق واللوجستيات الموقعية</li>
+                        <li>Large-scale event planning and execution</li>
+                        <li>International pavilion management</li>
+                        <li>Brand experience design</li>
+                        <li>On-site coordination and logistics</li>
                     </ul>
-                    <a href="contact-ar.html" class="service-link">
-                        <span>اعرف المزيد</span>
-                        <i class="fas fa-arrow-left"></i>
+                    <a href="contact-en.html" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="service-visual">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="الفعاليات والتجارب">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Events & Experience">
                     </div>
                 </div>
             </div>
@@ -682,24 +682,24 @@
                     <div class="service-icon">
                         <i class="fas fa-video"></i>
                     </div>
-                    <h2 class="service-title">الإعلام والإنتاج</h2>
+                    <h2 class="service-title">Media & Production</h2>
                     <p class="service-description">
-                        نقدم حلول إنتاج إعلامي احترافية تغطي جميع مراحل العمل، من الفكرة إلى التنفيذ النهائي، وفق أعلى المعايير الفنية والإبداعية التي من شأنها أن تُعزز الأثر وتضمن وصول الرسالة.
+                        Professional media productions across all stages of delivery—from concept to final output—delivered to the highest creative and technical standards to amplify impact and ensure effective audience reach locally and internationally.
                     </p>
                     <ul class="service-features">
-                        <li>إنتاج وتحرير الفيديو</li>
-                        <li>إنشاء المحتوى والاستراتيجية</li>
-                        <li>البث المباشر والتلفزيوني</li>
-                        <li>خدمات ما بعد الإنتاج</li>
+                        <li>Video production and editing</li>
+                        <li>Content creation and strategy</li>
+                        <li>Live streaming and broadcasting</li>
+                        <li>Post-production services</li>
                     </ul>
-                    <a href="contact-ar.html" class="service-link">
-                        <span>اعرف المزيد</span>
-                        <i class="fas fa-arrow-left"></i>
+                    <a href="contact-en.html" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="service-visual">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80" alt="الإعلام والإنتاج">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80" alt="Media & Production">
                     </div>
                 </div>
             </div>
@@ -710,24 +710,24 @@
                     <div class="service-icon">
                         <i class="fas fa-robot"></i>
                     </div>
-                    <h2 class="service-title">التكنولوجيا والذكاء الاصطناعي</h2>
+                    <h2 class="service-title">Technology & AI</h2>
                     <p class="service-description">
-                        نستخدم التكنولوجيا والذكاء الاصطناعي كعناصر داعمة للاستراتيجية، بهدف تحسين الكفاءة وتعزيز تجربة المستخدم ودعم اتخاذ القرار.
+                        Leveraging artificial intelligence and cutting-edge technology as strategic enablers—we introduce future-focused platforms to enhance efficiency, elevate user experience, and support smarter decision-making.
                     </p>
                     <ul class="service-features">
-                        <li>حلول مدعومة بالذكاء الاصطناعي</li>
-                        <li>استشارات التحول الرقمي</li>
-                        <li>الأتمتة وتحسين سير العمل</li>
-                        <li>تحليل البيانات والرؤى</li>
+                        <li>AI-powered solutions</li>
+                        <li>Digital transformation consulting</li>
+                        <li>Automation and workflow optimization</li>
+                        <li>Data analytics and insights</li>
                     </ul>
-                    <a href="contact-ar.html" class="service-link">
-                        <span>اعرف المزيد</span>
-                        <i class="fas fa-arrow-left"></i>
+                    <a href="contact-en.html" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="service-visual">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="التكنولوجيا والذكاء الاصطناعي">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="Technology & AI">
                     </div>
                 </div>
             </div>
@@ -738,24 +738,24 @@
                     <div class="service-icon">
                         <i class="fas fa-palette"></i>
                     </div>
-                    <h2 class="service-title">الهوية البصرية</h2>
+                    <h2 class="service-title">Brand Identity</h2>
                     <p class="service-description">
-                        نساعد المؤسسات على بناء علامات تجارية قوية، واضحة، وقابلة للنمو، من خلال حلول إبداعية مدروسة ترتكز على الفهم العميق للسوق والجمهور بما يضمن وضوح الرسالة واستدامة الأثر.
+                        We support organizations in building strong, clear, and scalable brands through strategic, insight-driven creative solutions—grounded in understanding audience needs, competitive landscape, and cultural clarity for lasting impact.
                     </p>
                     <ul class="service-features">
-                        <li>استراتيجية وتموضع العلامة التجارية</li>
-                        <li>تصميم الهوية البصرية</li>
-                        <li>إرشادات ومعايير العلامة التجارية</li>
-                        <li>تصميم المواد التسويقية</li>
+                        <li>Brand strategy and positioning</li>
+                        <li>Visual identity design</li>
+                        <li>Brand guidelines and standards</li>
+                        <li>Marketing collateral design</li>
                     </ul>
-                    <a href="contact-ar.html" class="service-link">
-                        <span>اعرف المزيد</span>
-                        <i class="fas fa-arrow-left"></i>
+                    <a href="contact-en.html" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="service-visual">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="الهوية البصرية">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="Brand Identity">
                     </div>
                 </div>
             </div>
@@ -765,13 +765,13 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-container">
-            <h2 class="cta-title">دعنا نناقش مشروعك</h2>
+            <h2 class="cta-title">Let's Discuss Your Project</h2>
             <p class="cta-description">
-                مستعد لتحويل رؤيتك إلى واقع؟ تواصل معنا اليوم لنناقش كيف يمكننا مساعدتك في تحويل أفكارك إلى تجارب مؤثرة.
+                Ready to bring your vision to life? Get in touch with us today to discuss how we can help transform your ideas into impactful experiences.
             </p>
-            <a href="contact-ar.html" class="btn-primary">
+            <a href="contact-en.html" class="btn-primary">
                 <i class="fas fa-paper-plane"></i>
-                تواصل معنا
+                Get in Touch
             </a>
         </div>
     </section>
@@ -781,43 +781,43 @@
         <div class="footer-grid">
             <div>
                 <div class="footer-logo">
-                    <img src="/assets/images/logo-white.png" alt="كور ميديا">
+                    <img src="/assets/images/logo-white.png" alt="Core Media">
                 </div>
                 <p class="footer-text">
-                    شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة والفعاليات الكبرى.
+                    Creative media company specializing in integrated media, digital experiences, and large-scale events.
                 </p>
                 <div class="social-links">
-                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (تويتر)">
+                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (Twitter)">
                         <i class="fab fa-x-twitter"></i>
                     </a>
-                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="فيسبوك">
+                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="إنستغرام">
+                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
             <div>
-                <h3 class="footer-title">روابط سريعة</h3>
+                <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="index-ar.html">الرئيسية</a></li>
-                    <li><a href="about-ar.html">من نحن</a></li>
-                    <li><a href="services-ar.html">الخدمات</a></li>
-                    <li><a href="contact-ar.html">تواصل معنا</a></li>
+                    <li><a href="index-en.html">Home</a></li>
+                    <li><a href="about-en.html">About</a></li>
+                    <li><a href="services-en.html">Services</a></li>
+                    <li><a href="contact-en.html">Contact</a></li>
                 </ul>
             </div>
             <div>
-                <h3 class="footer-title">الخدمات</h3>
+                <h3 class="footer-title">Services</h3>
                 <ul class="footer-links">
-                    <li><a href="services-ar.html">إدارة الفعاليات</a></li>
-                    <li><a href="services-ar.html">الإنتاج الإعلامي</a></li>
-                    <li><a href="services-ar.html">التكنولوجيا والذكاء الاصطناعي</a></li>
-                    <li><a href="services-ar.html">الهوية البصرية</a></li>
+                    <li><a href="services-en.html">Event Management</a></li>
+                    <li><a href="services-en.html">Media Production</a></li>
+                    <li><a href="services-en.html">Technology & AI</a></li>
+                    <li><a href="services-en.html">Brand Identity</a></li>
                 </ul>
             </div>
             <div>
-                <h3 class="footer-title">تواصل معنا</h3>
+                <h3 class="footer-title">Contact</h3>
                 <div class="footer-contact">
                     <div class="contact-item">
                         <i class="fas fa-globe"></i>
@@ -835,7 +835,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 كور ميديا. جميع الحقوق محفوظة. | حلول إبداعية</p>
+            <p>© 2026 Core Media. All rights reserved. | Creative Solutions</p>
         </div>
     </footer>
 
