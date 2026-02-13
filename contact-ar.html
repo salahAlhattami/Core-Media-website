@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تواصل مع كور ميديا - تواصل معنا لمشروعك القادم">
+    <title>تواصل معنا - كور ميديا</title>
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E31E24;
+            --dark-navy: #0a1628;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-gray: #666666;
+            --border-gray: #e5e5e5;
+        }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background: white;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 15px 60px;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px 60px;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            max-width: 180px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            height: 45px;
+            max-width: 160px;
+        }
+
+        .logo img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-red);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .lang-btn:not(.active) {
+            color: var(--text-gray);
+            border-color: var(--border-gray);
+        }
+
+        .lang-btn:not(.active):hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            color: white;
+            font-size: 32px;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            min-height: 50vh;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2640 100%);
+            padding: 140px 60px 80px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        .contact-hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .contact-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(227, 30, 36, 0.15);
+            border: 1px solid rgba(227, 30, 36, 0.3);
+            padding: 8px 16px;
+            border-radius: 25px;
+            color: var(--primary-red);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .contact-hero-title {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .contact-hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 120px 60px;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .info-card {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .info-card:hover {
+            background: white;
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-red);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .info-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .info-card-text {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .info-card-link {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .info-card-link:hover {
+            text-decoration: underline;
+        }
+
+        .social-links-large {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link-large {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 20px;
+            transition: all 0.3s;
+            border: 2px solid var(--border-gray);
+        }
+
+        .social-link-large:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            border: 2px solid var(--border-gray);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .form-subtitle {
+            font-size: 15px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: var(--primary-red);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border-gray);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 4px rgba(227, 30, 36, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--primary-red);
+            color: white;
+            border: 2px solid var(--primary-red);
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .form-button:hover {
+            background: transparent;
+            color: var(--primary-red);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(227, 30, 36, 0.3);
+        }
+
+        .form-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            padding: 20px;
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 10px;
+            color: #155724;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-navy);
+            color: white;
+            padding: 70px 60px 30px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-logo {
+            height: 45px;
+            max-width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 24px;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-item i {
+            color: var(--primary-red);
+            width: 18px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav, .contact-hero, .contact-section, footer {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .contact-hero-title {
+                font-size: 36px;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-float i {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/966537556021" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/assets/images/logo.png" alt="كور ميديا">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index-ar.html">الرئيسية</a></li>
+                <li><a href="about-ar.html">من نحن</a></li>
+                <li><a href="services-ar.html">الخدمات</a></li>
+                <li><a href="contact-ar.html" class="active">تواصل معنا</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="contact-ar.html" class="lang-btn active">عربي</a>
+                <a href="contact-en.html" class="lang-btn">English</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-container">
+            <div class="contact-tag">
+                <i class="fas fa-envelope"></i>
+                ابدأ محادثة
+            </div>
+            <h1 class="contact-hero-title">دعنا نبدأ محادثة</h1>
+            <p class="contact-hero-subtitle">
+                لديك مشروع في ذهنك؟ نحن نحب أن نسمع منك. أرسل لنا رسالة وسنرد في أقرب وقت ممكن.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="info-card-title">موقعنا</h3>
+                    <p class="info-card-text">
+                        الرياض، المملكة العربية السعودية
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="info-card-title">رقم الهاتف</h3>
+                    <p class="info-card-text">
+                        <a href="tel:+966537556021" class="info-card-link">+966 537 556 021</a>
+                    </p>
+                    <p class="info-card-text" style="font-size: 13px; margin-top: 8px;">
+                        متاح من الأحد إلى الخميس، 9 صباحاً - 6 مساءً
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="info-card-title">البريد الإلكتروني</h3>
+                    <p class="info-card-text">
+                        <a href="mailto:info@coremedias.com" class="info-card-link">info@coremedias.com</a>
+                    </p>
+                    <p class="info-card-text" style="font-size: 13px; margin-top: 8px;">
+                        سنرد خلال 24 ساعة
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="info-card-title">تابعنا</h3>
+                    <p class="info-card-text">ابقَ على اتصال عبر وسائل التواصل الاجتماعي</p>
+                    <div class="social-links-large">
+                        <a href="https://x.com/coremedias1" class="social-link-large" target="_blank" title="X (تويتر)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://facebook.com/coremedias1" class="social-link-large" target="_blank" title="فيسبوك">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/coremedias1" class="social-link-large" target="_blank" title="إنستغرام">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 class="form-title">أرسل لنا رسالة</h2>
+                <p class="form-subtitle">املأ النموذج أدناه وسنعود إليك في أقرب وقت ممكن.</p>
+
+                <div id="successMessage" class="success-message">
+                    <i class="fas fa-check-circle"></i> شكراً لك! تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.
+                </div>
+
+                <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                الاسم الكامل <span class="required">*</span>
+                            </label>
+                            <input type="text" name="name" class="form-input" placeholder="أحمد محمد" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                البريد الإلكتروني <span class="required">*</span>
+                            </label>
+                            <input type="email" name="email" class="form-input" placeholder="ahmad@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">
+                                رقم الهاتف
+                            </label>
+                            <input type="tel" name="phone" class="form-input" placeholder="+966 5XX XXX XXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                الخدمة المهتم بها
+                            </label>
+                            <select name="service" class="form-select">
+                                <option value="">اختر خدمة</option>
+                                <option value="events">الفعاليات والتجارب</option>
+                                <option value="media">الإعلام والإنتاج</option>
+                                <option value="technology">التكنولوجيا والذكاء الاصطناعي</option>
+                                <option value="branding">الهوية البصرية</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            تفاصيل المشروع <span class="required">*</span>
+                        </label>
+                        <textarea name="message" class="form-textarea" placeholder="أخبرنا عن مشروعك..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-button">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <img src="/assets/images/logo-white.png" alt="كور ميديا">
+                </div>
+                <p class="footer-text">
+                    شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة والفعاليات الكبرى.
+                </p>
+                <div class="social-links">
+                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (تويتر)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="فيسبوك">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="إنستغرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="index-ar.html">الرئيسية</a></li>
+                    <li><a href="about-ar.html">من نحن</a></li>
+                    <li><a href="services-ar.html">الخدمات</a></li>
+                    <li><a href="contact-ar.html">تواصل معنا</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">الخدمات</h3>
+                <ul class="footer-links">
+                    <li><a href="services-ar.html">إدارة الفعاليات</a></li>
+                    <li><a href="services-ar.html">الإنتاج الإعلامي</a></li>
+                    <li><a href="services-ar.html">التكنولوجيا والذكاء الاصطناعي</a></li>
+                    <li><a href="services-ar.html">الهوية البصرية</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">تواصل معنا</h3>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <span>www.coremedias.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@coremedias.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+966-537556021</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 كور ميديا. جميع الحقوق محفوظة. | حلول إبداعية</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        const form = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                // Replace with your actual form endpoint (Formspree, EmailJS, etc.)
+                // const response = await fetch(form.action, {
+                //     method: 'POST',
+                //     body: formData,
+                //     headers: {
+                //         'Accept': 'application/json'
+                //     }
+                // });
+
+                // For demo purposes, show success message immediately
+                successMessage.classList.add('show');
+                form.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('عذراً، حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة عبر البريد الإلكتروني أو الهاتف.');
+            }
+        });
+    </script>
+</body>
+</html>
