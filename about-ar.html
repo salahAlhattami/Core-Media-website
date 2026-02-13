@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="عن كور ميديا - شركة إعلامية إبداعية متخصصة في التجارب المتكاملة">
     <title>من نحن - كور ميديا</title>
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -26,10 +28,11 @@
         }
 
         body {
-            font-family: 'Tajawal', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #1a1a1a;
             line-height: 1.6;
             background: white;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -38,10 +41,17 @@
             top: 0;
             left: 0;
             right: 0;
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             padding: 15px 60px;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px 60px;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -54,12 +64,18 @@
 
         .logo {
             height: 50px;
-            width: auto;
+            max-width: 180px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            height: 45px;
+            max-width: 160px;
         }
 
         .logo img {
             height: 100%;
-            width: auto;
+            width: 100%;
             object-fit: contain;
         }
 
@@ -76,6 +92,23 @@
             font-size: 15px;
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
         }
 
         .nav-menu a:hover,
@@ -114,107 +147,126 @@
             color: var(--primary-red);
         }
 
-        /* About Hero Section */
-        .about-hero {
-            background: var(--dark-navy);
-            color: white;
-            padding: 140px 60px 80px;
-            min-height: 400px;
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            color: white;
+            font-size: 32px;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Hero Section */
+        .about-hero {
+            min-height: 60vh;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2640 100%);
+            padding: 140px 60px 80px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .about-hero::before {
             content: '';
             position: absolute;
             top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
+            left: -10%;
+            width: 800px;
+            height: 800px;
             background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
             border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
         }
 
-        .about-hero-content {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        .about-hero-container {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
             position: relative;
             z-index: 2;
-        }
-
-        .about-text {
-            max-width: 600px;
+            color: white;
         }
 
         .about-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(227, 30, 36, 0.15);
+            border: 1px solid rgba(227, 30, 36, 0.3);
+            padding: 8px 16px;
+            border-radius: 25px;
             color: var(--primary-red);
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .about-title {
-            font-size: 48px;
-            font-weight: 900;
+            letter-spacing: 1px;
             margin-bottom: 24px;
-            line-height: 1.1;
         }
 
-        .about-description {
-            font-size: 16px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 20px;
+        .about-hero-title {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            max-width: 800px;
         }
 
-        .about-quote {
-            background: rgba(227, 30, 36, 0.1);
-            border-right: 4px solid var(--primary-red);
-            padding: 20px 24px;
-            margin-top: 30px;
-            border-radius: 8px;
-        }
-
-        .about-quote p {
-            font-size: 15px;
-            font-weight: 600;
+        .about-hero-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
             line-height: 1.7;
-            color: white;
         }
 
-        .about-image-wrapper {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            height: 400px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        /* Main Content Section */
+        .about-content {
+            padding: 120px 60px;
+            background: white;
         }
 
-        .about-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* What Makes Us Unique Section */
-        .unique-section {
-            background: var(--dark-navy);
-            color: white;
-            padding: 100px 60px;
-            text-align: center;
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .section-header {
-            max-width: 800px;
-            margin: 0 auto 60px;
+            text-align: center;
+            margin-bottom: 80px;
         }
 
         .section-tag {
@@ -229,184 +281,179 @@
         .section-title {
             font-size: 42px;
             font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 16px;
         }
 
-        .unique-grid {
-            max-width: 1400px;
+        .section-description {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Values Grid */
+        .values-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
+            margin-bottom: 120px;
         }
 
-        .unique-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px 30px;
-            border-radius: 12px;
+        .value-card {
+            background: var(--light-gray);
+            border-radius: 16px;
+            padding: 40px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
         }
 
-        .unique-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-8px);
+        .value-card:hover {
+            background: white;
             border-color: var(--primary-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .unique-icon {
+        .value-icon {
             width: 70px;
             height: 70px;
             background: var(--primary-red);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 28px;
+            margin-bottom: 24px;
             color: white;
+            font-size: 32px;
+            transition: all 0.3s ease;
         }
 
-        .unique-title {
-            font-size: 18px;
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .value-title {
+            font-size: 22px;
             font-weight: 700;
             margin-bottom: 12px;
-            line-height: 1.3;
+            color: #1a1a1a;
         }
 
-        .unique-description {
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
+        .value-description {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.7;
         }
 
-        /* Our Approach Section */
+        /* Approach Section */
         .approach-section {
-            background: white;
-            padding: 100px 60px;
+            background: var(--dark-navy);
+            color: white;
+            padding: 120px 60px;
         }
 
-        .approach-content {
+        .approach-container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .approach-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 80px;
-        }
-
-        .approach-header .section-tag {
-            color: var(--primary-red);
-        }
-
-        .approach-header .section-title {
-            color: #1a1a1a;
-            font-size: 42px;
-        }
-
-        .approach-header .section-description {
-            font-size: 16px;
-            color: var(--text-gray);
-            line-height: 1.7;
-            margin-top: 16px;
+        .approach-section .section-title {
+            color: white !important;
         }
 
         .approach-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
         }
 
-        .approach-step {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+        .approach-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .approach-step.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .approach-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
         }
 
-        .step-number {
-            width: 60px;
-            height: 60px;
+        .approach-number {
+            width: 50px;
+            height: 50px;
             background: var(--primary-red);
-            border-radius: 12px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            margin-bottom: 20px;
+            font-size: 20px;
             font-weight: 900;
-            color: white;
-            flex-shrink: 0;
         }
 
-        .step-content h3 {
-            font-size: 20px;
+        .approach-title {
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 12px;
-            color: #1a1a1a;
         }
 
-        .step-content p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-gray);
+        .approach-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
         }
 
         /* CTA Section */
         .cta-section {
-            background: var(--primary-red);
-            color: white;
-            padding: 100px 60px;
+            background: var(--light-gray);
+            padding: 120px 60px;
             text-align: center;
         }
 
-        .cta-content {
-            max-width: 800px;
+        .cta-container {
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .cta-title {
             font-size: 48px;
             font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #1a1a1a;
         }
 
         .cta-description {
-            font-size: 17px;
+            font-size: 18px;
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-gray);
             margin-bottom: 40px;
         }
 
-        .btn-cta {
+        .btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: white;
-            color: var(--primary-red);
-            padding: 16px 40px;
+            background: var(--primary-red);
+            color: white;
+            padding: 16px 32px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             font-size: 16px;
             transition: all 0.3s ease;
+            border: 2px solid var(--primary-red);
         }
 
-        .btn-cta:hover {
-            background: var(--dark-navy);
-            color: white;
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary-red);
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 24px rgba(227, 30, 36, 0.3);
         }
 
         /* Footer */
@@ -425,14 +472,15 @@
         }
 
         .footer-logo {
-            height: 50px;
-            width: auto;
+            height: 45px;
+            max-width: 180px;
             margin-bottom: 20px;
         }
 
         .footer-logo img {
             height: 100%;
-            width: auto;
+            width: 100%;
+            object-fit: contain;
             filter: brightness(0) invert(1);
         }
 
@@ -528,18 +576,35 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            nav, .about-hero, .unique-section, .approach-section, .cta-section, footer {
-                padding-left: 40px;
-                padding-right: 40px;
-            }
-
-            .about-hero-content {
+            .values-grid {
                 grid-template-columns: 1fr;
-                gap: 50px;
             }
 
-            .unique-grid {
+            .approach-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav, .about-hero, .about-content, .approach-section, .cta-section, footer {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .about-hero-title {
+                font-size: 40px;
+            }
+
+            .section-title {
+                font-size: 32px;
             }
 
             .approach-grid {
@@ -547,65 +612,39 @@
             }
 
             .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .about-title {
-                font-size: 40px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 15px 25px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .about-hero, .unique-section, .approach-section, .cta-section, footer {
-                padding: 60px 25px;
-            }
-
-            .about-title {
-                font-size: 32px;
-            }
-
-            .section-title, .cta-title {
-                font-size: 28px;
-            }
-
-            .unique-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .whatsapp-float {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
             }
 
-            .about-image-wrapper {
-                height: 300px;
+            .whatsapp-float i {
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/966537556021" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">
-                <img src="Core_Media_Logo.png" alt="Core Media">
+                <img src="/assets/images/logo.png" alt="كور ميديا">
             </div>
             <ul class="nav-menu">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#about" class="active">من نحن</a></li>
-                <li><a href="services-ar.html">خدماتنا</a></li>
-                <li><a href="#contact">تواصل معنا</a></li>
+                <li><a href="index-ar.html">الرئيسية</a></li>
+                <li><a href="about-ar.html" class="active">من نحن</a></li>
+                <li><a href="services-ar.html">الخدمات</a></li>
+                <li><a href="contact-ar.html">تواصل معنا</a></li>
             </ul>
             <div class="language-switcher">
                 <a href="about-ar.html" class="lang-btn active">عربي</a>
@@ -614,104 +653,110 @@
         </div>
     </nav>
 
-    <!-- About Hero Section -->
+    <!-- Hero Section -->
     <section class="about-hero">
-        <div class="about-hero-content">
-            <div class="about-text">
-                <div class="about-tag">من نحن</div>
-                <h1 class="about-title">كور ميديا</h1>
-                <p class="about-description">
-                    كور ميديا شركة متخصصة في تصميم وتنفيذ التجارب الإعلامية والرقمية المتكاملة، تعمل عند نقطة الالتقاء بين الإبداع الاحترافي، التكنولوجيا الحديثة، وإدارة الفعاليات عالية التأثير.
-                </p>
-                <p class="about-description">
+        <div class="about-hero-container">
+            <div class="about-tag">
+                <i class="fas fa-circle"></i>
+                عن كور ميديا
+            </div>
+            <h1 class="about-hero-title">
+                حيث يلتقي الإبداع بالاستراتيجية
+            </h1>
+            <p class="about-hero-subtitle">
+                كور ميديا شركة متخصصة في تصميم وتنفيذ التجارب الإعلامية والرقمية المتكاملة، تعمل عند نقطة الالتقاء بين الإبداع الاحترافي، التكنولوجيا الحديثة، وإدارة الفعاليات عالية التأثير.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="about-content">
+        <div class="about-container">
+            <div class="section-header">
+                <div class="section-tag">رسالتنا</div>
+                <h2 class="section-title">نضع الجوهر في صميم كل شيء</h2>
+                <p class="section-description">
                     نؤمن أن الإعلام الحديث لم يعد مجرد محتوى أو حملة عابرة، بل منظومة متكاملة تبدأ بالفكرة، تمر بالتخطيط الاستراتيجي، وتتحول إلى تجربة واقعية تُدار باحتراف وتُقاس بنتائج واضحة.
                 </p>
-                <div class="about-quote">
-                    <p>"في كور ميديا نضع الجوهر في صميم كل ما نقدمه، لنضمن أن كل مشروع مبني على أساس متين من الفهم، التخطيط، والتنفيذ الدقيق."</p>
-                </div>
             </div>
-            <div class="about-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80" alt="كور ميديا" class="about-image">
+
+            <!-- Values -->
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <h3 class="value-title">مبنية على الوضوح</h3>
+                    <p class="value-description">
+                        كل خطوة مدروسة بوضوح وهدف.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="value-title">قائمة على الثقة</h3>
+                    <p class="value-description">
+                        قائمة على الثقة والقيمة المشتركة.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="value-title">تركيز على الجودة</h3>
+                    <p class="value-description">
+                        نهج شامل يركز على الجودة والنتائج.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- What Makes Us Unique Section -->
-    <section class="unique-section">
-        <div class="section-header">
-            <div class="section-tag">ما يميز كور ميديا</div>
-            <h2 class="section-title">ما الذي يميز كور ميديا؟</h2>
-        </div>
-        <div class="unique-grid">
-            <div class="unique-card">
-                <div class="unique-icon">
-                    <i class="fas fa-chess-knight"></i>
-                </div>
-                <h3 class="unique-title">نفكر بعقلية استراتيجية قبل التنفيذ</h3>
-                <p class="unique-description">كل خطوة مدروسة بوضوح وهدف.</p>
-            </div>
-            <div class="unique-card">
-                <div class="unique-icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-                <h3 class="unique-title">نبني شراكات طويلة المدى</h3>
-                <p class="unique-description">قائمة على الثقة والقيمة.</p>
-            </div>
-            <div class="unique-card">
-                <div class="unique-icon">
-                    <i class="fas fa-project-diagram"></i>
-                </div>
-                <h3 class="unique-title">ندير المشاريع برؤية شمولية</h3>
-                <p class="unique-description">تراعي الجودة والنتائج.</p>
-            </div>
-            <div class="unique-card">
-                <div class="unique-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <h3 class="unique-title">ندمج الإبداع مع التكنولوجيا</h3>
-                <p class="unique-description">لصناعة تأثير حقيقي.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Approach Section -->
+    <!-- Approach Section -->
     <section class="approach-section">
-        <div class="approach-content">
-            <div class="approach-header">
-                <div class="section-tag">منهجيتنا في العمل</div>
-                <h2 class="section-title">Our Approach</h2>
-                <p class="section-description">
-                    نعتمد في كور ميديا على منهجية واضحة تضمن تحقيق نتائج عالية الجودة واستدامتها:
+        <div class="approach-container">
+            <div class="section-header">
+                <div class="section-tag">طريقة عملنا</div>
+                <h2 class="section-title">منهجيتنا</h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.8);">
+                    نعتمد في كور ميديا على منهجية واضحة تضمن تحقيق نتائج عالية الجودة واستدامتها.
                 </p>
             </div>
+
             <div class="approach-grid">
-                <div class="approach-step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>الفهم والتحليل</h3>
-                        <p>دراسة أهداف العميل، طبيعة المشروع، والجمهور المستهدف.</p>
-                    </div>
+                <div class="approach-card">
+                    <div class="approach-number">1</div>
+                    <h3 class="approach-title">الاستكشاف</h3>
+                    <p class="approach-text">
+                        دراسة أهداف العميل، طبيعة المشروع، والجمهور المستهدف.
+                    </p>
                 </div>
-                <div class="approach-step">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>التخطيط الاستراتيجي</h3>
-                        <p>بناء تصور متكامل للحل المناسب وفق رؤية واضحة ومحددة.</p>
-                    </div>
+
+                <div class="approach-card">
+                    <div class="approach-number">2</div>
+                    <h3 class="approach-title">الاستراتيجية</h3>
+                    <p class="approach-text">
+                        بناء تصور متكامل للحل المناسب وفق رؤية واضحة ومحددة.
+                    </p>
                 </div>
-                <div class="approach-step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>التنفيذ الاحترافي</h3>
-                        <p>فرق متخصصة تعمل بتكامل لتحقيق أفضل النتائج.</p>
-                    </div>
+
+                <div class="approach-card">
+                    <div class="approach-number">3</div>
+                    <h3 class="approach-title">التنفيذ</h3>
+                    <p class="approach-text">
+                        فرق متخصصة تعمل بتكامل لتحقيق أفضل النتائج.
+                    </p>
                 </div>
-                <div class="approach-step">
-                    <div class="step-number">04</div>
-                    <div class="step-content">
-                        <h3>التقييم والتطوير</h3>
-                        <p>قياس الأثر وتحليل النتائج لضمان التحسين المستمر.</p>
-                    </div>
+
+                <div class="approach-card">
+                    <div class="approach-number">4</div>
+                    <h3 class="approach-title">القياس</h3>
+                    <p class="approach-text">
+                        قياس الأثر وتحليل النتائج لضمان التحسين المستمر.
+                    </p>
                 </div>
             </div>
         </div>
@@ -719,13 +764,13 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">لنعمل معاً</h2>
+        <div class="cta-container">
+            <h2 class="cta-title">مستعد لتحويل رؤيتك إلى واقع؟</h2>
             <p class="cta-description">
-                هل أنت مستعد لتحويل رؤيتك إلى واقع مؤثر؟ دعنا نبدأ المحادثة.
+                دعنا نبدأ محادثة حول كيف يمكننا مساعدتك في خلق تجارب تترك انطباعات دائمة.
             </p>
-            <a href="https://wa.me/966537556021" class="btn-cta">
-                <i class="fab fa-whatsapp"></i>
+            <a href="contact-ar.html" class="btn-primary">
+                <i class="fas fa-paper-plane"></i>
                 تواصل معنا
             </a>
         </div>
@@ -736,19 +781,19 @@
         <div class="footer-grid">
             <div>
                 <div class="footer-logo">
-                    <img src="Core_Media_Logo.png" alt="Core Media">
+                    <img src="/assets/images/logo-white.png" alt="كور ميديا">
                 </div>
                 <p class="footer-text">
-                    شركة إعلامية إبداعية متخصصة في الإعلام المتكامل والتجارب الرقمية والفعاليات واسعة النطاق.
+                    شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة والفعاليات الكبرى.
                 </p>
                 <div class="social-links">
-                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (Twitter)">
+                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (تويتر)">
                         <i class="fab fa-x-twitter"></i>
                     </a>
-                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="Facebook">
+                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="فيسبوك">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="Instagram">
+                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="إنستغرام">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -756,10 +801,10 @@
             <div>
                 <h3 class="footer-title">روابط سريعة</h3>
                 <ul class="footer-links">
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#about">من نحن</a></li>
-                    <li><a href="services-ar.html">خدماتنا</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="index-ar.html">الرئيسية</a></li>
+                    <li><a href="about-ar.html">من نحن</a></li>
+                    <li><a href="services-ar.html">الخدمات</a></li>
+                    <li><a href="contact-ar.html">تواصل معنا</a></li>
                 </ul>
             </div>
             <div>
@@ -768,7 +813,7 @@
                     <li><a href="services-ar.html">إدارة الفعاليات</a></li>
                     <li><a href="services-ar.html">الإنتاج الإعلامي</a></li>
                     <li><a href="services-ar.html">التكنولوجيا والذكاء الاصطناعي</a></li>
-                    <li><a href="services-ar.html">هوية العلامة التجارية</a></li>
+                    <li><a href="services-ar.html">الهوية البصرية</a></li>
                 </ul>
             </div>
             <div>
@@ -790,39 +835,19 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Core Media. جميع الحقوق محفوظة | حلول إبداعية</p>
+            <p>© 2026 كور ميديا. جميع الحقوق محفوظة. | حلول إبداعية</p>
         </div>
     </footer>
 
     <script>
-        // Approach steps animation
-        const steps = document.querySelectorAll('.approach-step');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 150);
-                }
-            });
-        }, {
-            threshold: 0.2
-        });
-
-        steps.forEach(step => {
-            observer.observe(step);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
