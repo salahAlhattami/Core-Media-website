@@ -62,17 +62,18 @@
 
         .logo {
             height: 50px;
-            width: auto;
+            max-width: 180px;
             transition: all 0.3s ease;
         }
 
         nav.scrolled .logo {
             height: 45px;
+            max-width: 160px;
         }
 
         .logo img {
             height: 100%;
-            width: auto;
+            width: 100%;
             object-fit: contain;
         }
 
@@ -727,14 +728,15 @@
         }
 
         .footer-logo {
-            height: 50px;
-            width: auto;
+            height: 45px;
+            max-width: 180px;
             margin-bottom: 20px;
         }
 
         .footer-logo img {
             height: 100%;
-            width: auto;
+            width: 100%;
+            object-fit: contain;
             filter: brightness(0) invert(1);
         }
 
@@ -896,9 +898,10 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">
-    <img src="/assets/images/logo.png" alt="Core Media">
-</div>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/assets/images/logo.png" alt="Core Media">
+            </div>
             <ul class="nav-menu">
                 <li><a href="index-en.html" class="active">Home</a></li>
                 <li><a href="about-en.html">About</a></li>
@@ -1115,9 +1118,10 @@
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-logo">
-    <img src="/assets/images/logo-white.png" alt="Core Media">
-</div>
+            <div>
+                <div class="footer-logo">
+                    <img src="/assets/images/logo-white.png" alt="Core Media">
+                </div>
                 <p class="footer-text">
                     Creative media company specializing in integrated media, digital experiences, and large-scale events.
                 </p>
