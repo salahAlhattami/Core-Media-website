@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="كور ميديا - شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة">
     <title>كور ميديا - حلول إبداعية</title>
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="كور ميديا - حلول إبداعية">
+    <meta property="og:description" content="شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة">
+    <meta property="og:image" content="/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://coremedia-website.vercel.app">
+
     <style>
         * {
             margin: 0;
@@ -26,7 +34,7 @@
         }
 
         body {
-            font-family: 'Tajawal', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #1a1a1a;
             line-height: 1.6;
             background: white;
@@ -62,17 +70,18 @@
 
         .logo {
             height: 50px;
-            width: auto;
+            max-width: 180px;
             transition: all 0.3s ease;
         }
 
         nav.scrolled .logo {
             height: 45px;
+            max-width: 160px;
         }
 
         .logo img {
             height: 100%;
-            width: auto;
+            width: 100%;
             object-fit: contain;
         }
 
@@ -96,7 +105,7 @@
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 0;
+            right: 0;
             width: 0;
             height: 2px;
             background: var(--primary-red);
@@ -144,6 +153,44 @@
             color: var(--primary-red);
         }
 
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            color: white;
+            font-size: 32px;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -159,7 +206,7 @@
             content: '';
             position: absolute;
             top: -50%;
-            right: -10%;
+            left: -10%;
             width: 800px;
             height: 800px;
             background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
@@ -200,17 +247,17 @@
             font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 24px;
-            animation: slideInRight 0.8s ease;
+            animation: slideInLeft 0.8s ease;
         }
 
         .hero-tag i {
             font-size: 10px;
         }
 
-        @keyframes slideInRight {
+        @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateX(-30px);
+                transform: translateX(30px);
             }
             to {
                 opacity: 1;
@@ -331,13 +378,13 @@
 
         .hero-visual {
             position: relative;
-            animation: fadeInLeft 1s ease 0.5s both;
+            animation: fadeInRight 1s ease 0.5s both;
         }
 
-        @keyframes fadeInLeft {
+        @keyframes fadeInRight {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateX(-50px);
             }
             to {
                 opacity: 1;
@@ -359,10 +406,10 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
             right: 0;
+            left: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-red) 0%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, var(--primary-red) 100%);
         }
 
         .hero-image {
@@ -476,15 +523,56 @@
             overflow: hidden;
         }
 
-        .capability-card::before {
+        /* Background images for capability cards */
+        .capability-card::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .capability-card:nth-child(1)::after {
+            background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80');
+        }
+
+        .capability-card:nth-child(2)::after {
+            background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80');
+        }
+
+        .capability-card:nth-child(3)::after {
+            background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80');
+        }
+
+        .capability-card:nth-child(4)::after {
+            background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80');
+        }
+
+        .capability-card:hover::after {
+            opacity: 0.15;
+        }
+
+        .capability-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
             width: 4px;
             height: 0;
             background: var(--primary-red);
             transition: height 0.3s ease;
+            z-index: 2;
         }
 
         .capability-card:hover {
@@ -558,6 +646,11 @@
             margin: 0 auto;
         }
 
+        /* Fixed color for section title */
+        .philosophy-section .section-title {
+            color: white !important;
+        }
+
         .philosophy-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -604,7 +697,7 @@
             line-height: 1.6;
         }
 
-        /* Principles Section */
+        /* Principles Section with Animation */
         .principles-section {
             background: var(--primary-red);
             color: white;
@@ -627,10 +720,35 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 40px;
+            position: relative;
         }
 
+        /* Arrow animations between principles */
         .principle-item {
             text-align: center;
+            position: relative;
+        }
+
+        .principle-item:not(:last-child)::after {
+            content: '←';
+            position: absolute;
+            left: -40px;
+            top: 25px;
+            font-size: 28px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.3);
+            animation: arrow-slide-rtl 2s ease-in-out infinite;
+        }
+
+        @keyframes arrow-slide-rtl {
+            0%, 100% {
+                transform: translateX(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateX(-10px);
+                opacity: 0.8;
+            }
         }
 
         .principle-number {
@@ -644,6 +762,13 @@
             margin: 0 auto 16px;
             font-size: 20px;
             font-weight: 900;
+            transition: all 0.3s ease;
+        }
+
+        .principle-item:hover .principle-number {
+            background: white;
+            color: var(--primary-red);
+            transform: scale(1.2);
         }
 
         .principle-text {
@@ -727,14 +852,15 @@
         }
 
         .footer-logo {
-            height: 50px;
-            width: auto;
+            height: 45px;
+            max-width: 180px;
             margin-bottom: 20px;
         }
 
         .footer-logo img {
             height: 100%;
-            width: auto;
+            width: 100%;
+            object-fit: contain;
             filter: brightness(0) invert(1);
         }
 
@@ -851,6 +977,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .principle-item:nth-child(2n)::after {
+                display: none;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -887,24 +1017,44 @@
                 grid-template-columns: 1fr;
             }
 
+            .principle-item::after {
+                display: none !important;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-float i {
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/966537556021" class="whatsapp-float" target="_blank" aria-label="تواصل معنا عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-          <div class="logo">
-    <img src="/assets/images/logo.png" alt="Core Media">
-</div>
+            <div class="logo">
+                <img src="/assets/images/logo.png" alt="كور ميديا">
+            </div>
             <ul class="nav-menu">
                 <li><a href="index-ar.html" class="active">الرئيسية</a></li>
                 <li><a href="about-ar.html">من نحن</a></li>
-                <li><a href="services-ar.html">خدماتنا</a></li>
-                <li><a href="#contact">تواصل معنا</a></li>
+                <li><a href="services-ar.html">الخدمات</a></li>
+                <li><a href="contact-ar.html">تواصل معنا</a></li>
             </ul>
             <div class="language-switcher">
                 <a href="index-ar.html" class="lang-btn active">عربي</a>
@@ -922,33 +1072,33 @@
                     حلول إبداعية
                 </div>
                 <h1 class="hero-title">
-                    !جاهزون
-                    <span class="highlight">لنبتكر شيئاً استثنائياً</span>
+                    جاهزون!
+                    <span class="highlight">لنصنع شيئاً استثنائياً معاً</span>
                 </h1>
                 <p class="hero-subtitle">
                     كور ميديا شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة تصنع انطباعات دائمة.
                 </p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/966537556021" class="btn-primary">
-                        <i class="fab fa-whatsapp"></i>
+                    <a href="contact-ar.html" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i>
                         ابدأ مشروعك
                     </a>
                     <a href="services-ar.html" class="btn-secondary">
-                        <span>استكشف خدماتنا</span>
+                        <span>اكتشف خدماتنا</span>
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-number">+100</div>
-                        <div class="stat-label">مشروع ناجح</div>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">مشروع</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">+50</div>
+                        <div class="stat-number">7+</div>
                         <div class="stat-label">عميل سعيد</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">+10</div>
+                        <div class="stat-number">3+</div>
                         <div class="stat-label">سنوات خبرة</div>
                     </div>
                 </div>
@@ -961,7 +1111,7 @@
                     <div class="hero-card-content">
                         <h3 class="hero-card-title">شاهد قصتنا</h3>
                         <p class="hero-card-text">
-                            2 دقائق · فيديو
+                            2 دقيقة · فيديو
                         </p>
                         <div class="hero-card-metric">
                             <span class="metric-label">معدل النجاح</span>
@@ -1027,7 +1177,7 @@
                     <div class="capability-icon">
                         <i class="fas fa-palette"></i>
                     </div>
-                    <h3 class="capability-title">بناء الهوية والعلامة التجارية</h3>
+                    <h3 class="capability-title">الهوية البصرية</h3>
                     <p class="capability-description">
                         بناء علامات تجارية قوية وواضحة من خلال حلول إبداعية مدروسة ترتكز على الفهم العميق للسوق.
                     </p>
@@ -1050,7 +1200,7 @@
             <div class="philosophy-grid">
                 <div class="philosophy-card">
                     <div class="philosophy-number">01</div>
-                    <h3 class="philosophy-title">الفعاليات ليست لحظات مؤقتة</h3>
+                    <h3 class="philosophy-title">الفعاليات ليست لحظات عابرة</h3>
                     <p class="philosophy-text">بل تجربة متكاملة</p>
                 </div>
                 <div class="philosophy-card">
@@ -1060,7 +1210,7 @@
                 </div>
                 <div class="philosophy-card">
                     <div class="philosophy-number">03</div>
-                    <h3 class="philosophy-title">الهوية ليست تصميماً</h3>
+                    <h3 class="philosophy-title">الهوية التجارية ليست تصميماً</h3>
                     <p class="philosophy-text">بل ذاكرة تستمر</p>
                 </div>
             </div>
@@ -1096,14 +1246,14 @@
     <section class="cta-section">
         <div class="cta-container">
             <div class="cta-tag">هل أنت مستعد؟</div>
-            <h2 class="cta-title">لنحول رؤيتك إلى واقع</h2>
+            <h2 class="cta-title">جاهز لتحويل رؤيتك إلى واقع؟</h2>
             <p class="cta-description">
-                شارك مع كور ميديا لابتكار تجارب مؤثرة تحقق نتائج قابلة للقياس وتترك أثراً دائماً
+                شارك مع كور ميديا لابتكار تجارب مؤثرة تحقق نتائج قابلة للقياس وتترك أثراً دائماً.
             </p>
             <div class="cta-buttons">
-                <a href="https://wa.me/966537556021" class="btn-primary">
-                    <i class="fab fa-whatsapp"></i>
-                    ابدأ المحادثة
+                <a href="contact-ar.html" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    ابدأ محادثة
                 </a>
                 <a href="about-ar.html" class="btn-secondary">
                     <span>تعرف علينا</span>
@@ -1116,20 +1266,21 @@
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-logo">
-    <img src="/assets/images/logo-white.png" alt="Core Media">
-</div>
+            <div>
+                <div class="footer-logo">
+                    <img src="/assets/images/logo-white.png" alt="كور ميديا">
+                </div>
                 <p class="footer-text">
-                    شركة إعلامية إبداعية متخصصة في الإعلام المتكامل والتجارب الرقمية والفعاليات واسعة النطاق.
+                    شركة إعلامية إبداعية متخصصة في تصميم وتقديم تجارب إعلامية ورقمية متكاملة والفعاليات الكبرى.
                 </p>
                 <div class="social-links">
-                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (Twitter)">
+                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (تويتر)">
                         <i class="fab fa-x-twitter"></i>
                     </a>
-                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="Facebook">
+                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="فيسبوك">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="Instagram">
+                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="إنستغرام">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -1139,8 +1290,8 @@
                 <ul class="footer-links">
                     <li><a href="index-ar.html">الرئيسية</a></li>
                     <li><a href="about-ar.html">من نحن</a></li>
-                    <li><a href="services-ar.html">خدماتنا</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="services-ar.html">الخدمات</a></li>
+                    <li><a href="contact-ar.html">تواصل معنا</a></li>
                 </ul>
             </div>
             <div>
@@ -1149,7 +1300,7 @@
                     <li><a href="services-ar.html">إدارة الفعاليات</a></li>
                     <li><a href="services-ar.html">الإنتاج الإعلامي</a></li>
                     <li><a href="services-ar.html">التكنولوجيا والذكاء الاصطناعي</a></li>
-                    <li><a href="services-ar.html">هوية العلامة التجارية</a></li>
+                    <li><a href="services-ar.html">الهوية البصرية</a></li>
                 </ul>
             </div>
             <div>
@@ -1171,7 +1322,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Core Media. جميع الحقوق محفوظة | حلول إبداعية</p>
+            <p>© 2026 كور ميديا. جميع الحقوق محفوظة. | حلول إبداعية</p>
         </div>
     </footer>
 
