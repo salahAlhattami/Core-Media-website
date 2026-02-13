@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Services - Core Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #E31E24;
+            --dark-navy: #0a1628;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-gray: #666666;
+            --border-gray: #e5e5e5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background: white;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 60px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-red);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .lang-btn:not(.active) {
+            color: var(--text-gray);
+            border-color: var(--border-gray);
+        }
+
+        .lang-btn:not(.active):hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        .btn-get-started {
+            background: var(--primary-red);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-get-started:hover {
+            background: #c41a1f;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Header */
+        .services-hero {
+            background: var(--dark-navy);
+            color: white;
+            padding: 140px 60px 80px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            color: var(--primary-red);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Container */
+        .services-container {
+            background: white;
+        }
+
+        .service-section {
+            padding: 100px 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .service-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .service-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .service-section.layout-right .service-content {
+            direction: rtl;
+        }
+
+        .service-section.layout-right .service-text {
+            direction: ltr;
+        }
+
+        .service-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-red);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding: 6px 14px;
+            background: rgba(227, 30, 36, 0.08);
+            border-radius: 20px;
+        }
+
+        .service-tag i {
+            font-size: 12px;
+        }
+
+        .service-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .service-description {
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(8px);
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            color: inherit;
+        }
+
+        .feature-icon i {
+            font-size: 16px;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1a1a1a;
+            padding-top: 6px;
+        }
+
+        .service-image-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 480px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .service-image-wrapper:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .service-image-wrapper:hover .service-image {
+            transform: scale(1.05);
+        }
+
+        .floating-action-btn {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .floating-action-btn:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-action-btn i {
+            font-size: 20px;
+            color: white;
+        }
+
+        /* CTA Section */
+        .services-cta {
+            background: var(--dark-navy);
+            color: white;
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-red);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background: #c41a1f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(227, 30, 36, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-navy);
+            color: white;
+            padding: 70px 60px 30px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 24px;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-item i {
+            color: var(--primary-red);
+            width: 18px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav, .services-hero, .service-section, .services-cta, footer {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+
+            .service-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .service-section.layout-right .service-content {
+                direction: ltr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-title {
+                font-size: 44px;
+            }
+
+            .cta-title {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .services-hero, .service-section, .services-cta, footer {
+                padding: 60px 25px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .service-title {
+                font-size: 28px;
+            }
+
+            .cta-title {
+                font-size: 32px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-image-wrapper {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Core_Media_Logo.png" alt="Core Media">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services" class="active">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="services-ar.html" class="lang-btn">عربي</a>
+                <a href="services-en.html" class="lang-btn active">English</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="services-hero">
+        <div class="hero-content">
+            <div class="hero-tag">ABOUT OUR OFFER</div>
+            <h1 class="hero-title">Core Services</h1>
+            <p class="hero-description">
+                Core Media is an integrated media platform built to design, deliver, and amplify impact. We deliver an integrated service system designed to operate as one cohesive unit.
+            </p>
+        </div>
+    </header>
+
+    <!-- Services List -->
+    <div class="services-container">
+        <!-- Service 1: Events & Experience -->
+        <section class="service-section layout-left">
+            <div class="service-content">
+                <div class="service-text">
+                    <span class="service-tag"><i class="fas fa-bullseye"></i> Core Capability</span>
+                    <h2 class="service-title">Events & Large-Scale Experience Management</h2>
+                    <p class="service-description">
+                        Core Media brings hands-on expertise in delivering large-scale events across local and international platforms, transforming ideas into memorable, high-impact gatherings that reflect brand identity and create lasting presence.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-calendar-check"></i>
+                            </span>
+                            <span class="feature-text">Strategic planning of conferences, exhibitions, and international events</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-users-cog"></i>
+                            </span>
+                            <span class="feature-text">Project management and operational team leadership for large-scale events</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-building"></i>
+                            </span>
+                            <span class="feature-text">Design and management of cultural and commercial pavilions at international activations</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-music"></i>
+                            </span>
+                            <span class="feature-text">Design and execution of championing, special concerts, and temporary events</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-user-shield"></i>
+                            </span>
+                            <span class="feature-text">Crowd management and on-ground operations with high-level professional standards</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="feature-text">Evaluation of interactive experiences and culturally driven events</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Events Management" class="service-image">
+                    <button class="floating-action-btn" style="background: #E31E24;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 2: Media & Production -->
+        <section class="service-section layout-right">
+            <div class="service-content">
+                <div class="service-text">
+                    <span class="service-tag"><i class="fas fa-broadcast-tower"></i> Supporting & Amplification Layer</span>
+                    <h2 class="service-title">Media & Production</h2>
+                    <p class="service-description">
+                        Professional media productions across planning stages of delivery — from concept to final output — delivered to the highest creative and technical standards to amplify impact and ensure effective audience reach locally and internationally.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-tv"></i>
+                            </span>
+                            <span class="feature-text">Television and digital production</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-film"></i>
+                            </span>
+                            <span class="feature-text">Advertising and cinematic production</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-camera"></i>
+                            </span>
+                            <span class="feature-text">Professional photography and advanced editing</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-video"></i>
+                            </span>
+                            <span class="feature-text">Media coverage for events and exhibitions</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-satellite-dish"></i>
+                            </span>
+                            <span class="feature-text">Visual broadcast production for projects</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-pen-fancy"></i>
+                            </span>
+                            <span class="feature-text">Scriptwriting and short-form content development</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80" alt="Media Production" class="service-image">
+                    <button class="floating-action-btn" style="background: #666666;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 3: Technology & AI -->
+        <section class="service-section layout-left">
+            <div class="service-content">
+                <div class="service-text">
+                    <span class="service-tag"><i class="fas fa-microchip"></i> Enabling Technology</span>
+                    <h2 class="service-title">Technology & Artificial Intelligence</h2>
+                    <p class="service-description">
+                        Leveraging our artificial intelligence use cases in strategic translation — we introduce future-focused platforms to enhance efficiency, elevate user experience, and support smarter decision-making.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-laptop-code"></i>
+                            </span>
+                            <span class="feature-text">Websites and digital platform development</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-mobile-alt"></i>
+                            </span>
+                            <span class="feature-text">Smart specialties design and development</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-drafting-compass"></i>
+                            </span>
+                            <span class="feature-text">Intelligent, user-centered responsive design</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-robot"></i>
+                            </span>
+                            <span class="feature-text">AI-driven automation and operational coordination</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(227, 30, 36, 0.1); color: #E31E24;">
+                                <i class="fas fa-brain"></i>
+                            </span>
+                            <span class="feature-text">AI-driven simulations and data analysis</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80" alt="Technology & AI" class="service-image">
+                    <button class="floating-action-btn" style="background: #E31E24;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 4: Brand Identity -->
+        <section class="service-section layout-right">
+            <div class="service-content">
+                <div class="service-text">
+                    <span class="service-tag"><i class="fas fa-palette"></i> Strategic Foundation Building</span>
+                    <h2 class="service-title">Building Identity & Brand</h2>
+                    <p class="service-description">
+                        Organizations are supported in building strong, clear, and scalable brands through strategic, insight-driven creative solutions—grounded in understanding audience needs, competitive landscape, and cultural clarity and lasting impact.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-trademark"></i>
+                            </span>
+                            <span class="feature-text">Brand identity and visual branding development</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-bullhorn"></i>
+                            </span>
+                            <span class="feature-text">Design of integrated marketing strategies</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-chart-pie"></i>
+                            </span>
+                            <span class="feature-text">Management of multi-channel advertising campaigns</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-comments"></i>
+                            </span>
+                            <span class="feature-text">Development of communication messaging and creative content</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon" style="background: rgba(102, 102, 102, 0.1); color: #666666;">
+                                <i class="fas fa-book-open"></i>
+                            </span>
+                            <span class="feature-text">Storytelling and building long-term brand presence</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="Brand Identity" class="service-image">
+                    <button class="floating-action-btn" style="background: #666666;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="services-cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Start Your Project?</h2>
+            <p class="cta-description">
+                Let's discuss how Core Media can help transform your vision into an impactful experience.
+            </p>
+            <a href="https://wa.me/966537556021" class="btn-cta">
+                <i class="fab fa-whatsapp"></i>
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <img src="Core_Media_Logo.png" alt="Core Media">
+                </div>
+                <p class="footer-text">
+                    Creative media company specializing in integrated media, digital experiences, and large-scale events.
+                </p>
+                <div class="social-links">
+                    <a href="https://x.com/coremedias1" class="social-link" target="_blank" title="X (Twitter)">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://facebook.com/coremedias1" class="social-link" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/coremedias1" class="social-link" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Event Management</a></li>
+                    <li><a href="#">Media Production</a></li>
+                    <li><a href="#">Technology & AI</a></li>
+                    <li><a href="#">Brand Identity</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Contact</h3>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <span>www.coremedias.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@coremedias.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+966-537556021</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Core Media. All rights reserved. | Creative Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation observer
+        const sections = document.querySelectorAll('.service-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
